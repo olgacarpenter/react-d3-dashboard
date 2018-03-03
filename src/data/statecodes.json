@@ -1,0 +1,238 @@
+{
+   "AL": {
+      "state_code": "01",
+      "state_name": "Alabama"
+   },
+   "AK": {
+      "state_code": "02",
+      "state_name": "Alaska"
+   },
+   "AZ": {
+      "state_code": "04",
+      "state_name": "Arizona"
+   },
+   "AR": {
+      "state_code": "05",
+      "state_name": "Arkansas"
+   },
+   "CA": {
+      "state_code": "06",
+      "state_name": "California"
+   },
+   "CO": {
+      "state_code": "08",
+      "state_name": "Colorado"
+   },
+   "CT": {
+      "state_code": "09",
+      "state_name": "Connecticut"
+   },
+   "DE": {
+      "state_code": "10",
+      "state_name": "Delaware"
+   },
+   "DC": {
+      "state_code": "11",
+      "state_name": "District Of Columbia"
+   },
+   "FL": {
+      "state_code": "12",
+      "state_name": "Florida"
+   },
+   "GA": {
+      "state_code": "13",
+      "state_name": "Georgia"
+   },
+   "HI": {
+      "state_code": "15",
+      "state_name": "Hawaii"
+   },
+   "ID": {
+      "state_code": "16",
+      "state_name": "Idaho"
+   },
+   "IL": {
+      "state_code": "17",
+      "state_name": "Illinois"
+   },
+   "IN": {
+      "state_code": "18",
+      "state_name": "Indiana"
+   },
+   "IA": {
+      "state_code": "19",
+      "state_name": "Iowa"
+   },
+   "KS": {
+      "state_code": "20",
+      "state_name": "Kansas"
+   },
+   "KY": {
+      "state_code": "21",
+      "state_name": "Kentucky"
+   },
+   "LA": {
+      "state_code": "22",
+      "state_name": "Louisiana"
+   },
+   "ME": {
+      "state_code": "23",
+      "state_name": "Maine"
+   },
+   "MD": {
+      "state_code": "24",
+      "state_name": "Maryland"
+   },
+   "MA": {
+      "state_code": "25",
+      "state_name": "Massachusetts"
+   },
+   "MI": {
+      "state_code": "26",
+      "state_name": "Michigan"
+   },
+   "MN": {
+      "state_code": "27",
+      "state_name": "Minnesota"
+   },
+   "MS": {
+      "state_code": "28",
+      "state_name": "Mississippi"
+   },
+   "MO": {
+      "state_code": "29",
+      "state_name": "Missouri"
+   },
+   "MT": {
+      "state_code": "30",
+      "state_name": "Montana"
+   },
+   "NE": {
+      "state_code": "31",
+      "state_name": "Nebraska"
+   },
+   "NV": {
+      "state_code": "32",
+      "state_name": "Nevada"
+   },
+   "NH": {
+      "state_code": "33",
+      "state_name": "New Hampshire"
+   },
+   "NJ": {
+      "state_code": "34",
+      "state_name": "New Jersey"
+   },
+   "NM": {
+      "state_code": "35",
+      "state_name": "New Mexico"
+   },
+   "NY": {
+      "state_code": "36",
+      "state_name": "New York"
+   },
+   "NC": {
+      "state_code": "37",
+      "state_name": "North Carolina"
+   },
+   "ND": {
+      "state_code": "38",
+      "state_name": "North Dakota"
+   },
+   "OH": {
+      "state_code": "39",
+      "state_name": "Ohio"
+   },
+   "OK": {
+      "state_code": "40",
+      "state_name": "Oklahoma"
+   },
+   "OR": {
+      "state_code": "41",
+      "state_name": "Oregon"
+   },
+   "PA": {
+      "state_code": "42",
+      "state_name": "Pennsylvania"
+   },
+   "RI": {
+      "state_code": "44",
+      "state_name": "Rhode Island"
+   },
+   "SC": {
+      "state_code": "45",
+      "state_name": "South Carolina"
+   },
+   "SD": {
+      "state_code": "46",
+      "state_name": "South Dakota"
+   },
+   "TN": {
+      "state_code": "47",
+      "state_name": "Tennessee"
+   },
+   "TX": {
+      "state_code": "48",
+      "state_name": "Texas"
+   },
+   "UT": {
+      "state_code": "49",
+      "state_name": "Utah"
+   },
+   "VT": {
+      "state_code": "50",
+      "state_name": "Vermont"
+   },
+   "VA": {
+      "state_code": "51",
+      "state_name": "Virginia"
+   },
+   "WA": {
+      "state_code": "53",
+      "state_name": "Washington"
+   },
+   "WV": {
+      "state_code": "54",
+      "state_name": "West Virginia"
+   },
+   "WI": {
+      "state_code": "55",
+      "state_name": "Wisconsin"
+   },
+   "WY": {
+      "state_code": "56",
+      "state_name": "Wyoming"
+   },
+   "AS": {
+      "state_code": "60",
+      "state_name": "American Samoa"
+   },
+   "FM": {
+      "state_code": "64",
+      "state_name": "Federated States Of Micronesia"
+   },
+   "GU": {
+      "state_code": "66",
+      "state_name": "Guam"
+   },
+   "MH": {
+      "state_code": "68",
+      "state_name": "Marshall Islands"
+   },
+   "MP": {
+      "state_code": "69",
+      "state_name": "Northern Mariana Islands"
+   },
+   "PW": {
+      "state_code": "70",
+      "state_name": "Palau"
+   },
+   "PR": {
+      "state_code": "72",
+      "state_name": "Puerto Rico"
+   },
+   "VI": {
+      "state_code": "78",
+      "state_name": "Virgin Islands"
+   }
+}

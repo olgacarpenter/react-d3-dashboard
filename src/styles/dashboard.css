@@ -1,0 +1,17 @@
+.dashboard {
+    padding: 1rem;
+}
+.db-widget {
+    height: 100%;
+}
+.chart-legend {
+    list-style: none;
+}
+.inline-legend {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0;
+}
+.counties:hover {
+    fill-opacity: 0.5;
+}
