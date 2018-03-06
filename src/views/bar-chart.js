@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Axis from './../components/axis';
 import ChartLegend from './../components/chart-legend';
@@ -8,19 +8,18 @@ const d3 = require('d3');
 const BarChart = (props) => {
 
     const dataset = props.dataset;
-    const labelField = props.labelField;
+    const xAxisField = props.xAxisField;
     const w = props.width; 
     const h = w * 0.8;  
     const barPadding = w * 0.02; 
     const xPadding = w * 0.15;  
     const yPadding = w * 0.1; 
-//    const fillColor = props.fillColor;
     const series = props.series; 
 
     const seriesWidth = (w - 2 * xPadding) / dataset.length - barPadding;
     const xScale = d3.scaleBand()
     	.domain(dataset.map(d => {
-    		return d[labelField];
+    		return d[xAxisField];
     		}))
     	.rangeRound([xPadding,w-xPadding]);
     const yScale = d3.scaleLinear()
@@ -34,7 +33,7 @@ const BarChart = (props) => {
     const bars = dataset.map((d,i) => {
         return series.map((s,m) => {
             return <rect 
-                    x={xScale(d[labelField]) + (seriesWidth/series.length)*m + barPadding} 
+                    x={xScale(d[xAxisField]) + (seriesWidth/series.length)*m + barPadding} 
                     y={yScale(d[s.dataField ])}
                     width={seriesWidth/series.length} 
                     height={h - yPadding - yScale(d[s.dataField])} 
@@ -52,12 +51,12 @@ const BarChart = (props) => {
                 >
                     {props.title}
                 </text>;
-    const labels = props.barLabels ?
+    const labels = props.showBarLabels ?
         dataset.map((d,i) => {
             return series.map((s,m) => {
                 const y = (yScale(d[s.dataField]) + 14) > h-yPadding ? yScale(d[s.dataField]) : yScale(d[s.dataField])+14;
                 return <text 
-	                    x={xScale(d[labelField]) + (seriesWidth/series.length/2) + (seriesWidth/series.length)*m + barPadding}
+	                    x={xScale(d[xAxisField]) + (seriesWidth/series.length/2) + (seriesWidth/series.length)*m + barPadding}
 	                    y={y}
 	                    fill="black"
 	                    fontSize="11px"
@@ -86,21 +85,21 @@ const BarChart = (props) => {
 
 BarChart.propTypes = {
     dataset: PropTypes.arrayOf(PropTypes.object).isRequired,
-    labelField: PropTypes.string.isRequired,
+    xAxisField: PropTypes.string.isRequired,
     width: PropTypes.number,
     fillColor: PropTypes.string,
     title: PropTypes.string,
-    barLabels: PropTypes.bool,
+    showBarLabels: PropTypes.bool,
     showBorder: PropTypes.bool,
 };
 
 BarChart.defaultProps = {
     dataset: [],
-    labelField: "",
+    xAxisField: "",
     width: 500,
     fillColor: "#0275d8",
     title: "",
-    barLabels: true,
+    showBarLabels: true,
     showBorder: true
 };
 

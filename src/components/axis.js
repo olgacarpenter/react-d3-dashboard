@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-
+import React, { Component } from 'react';
 const d3 = require('d3');
 
 export default class Axis extends Component {
@@ -12,8 +11,8 @@ export default class Axis extends Component {
   }
 
   renderAxis() {
-    var node  = this.refs.axis;
-    var axis; 
+    const node  = this.refs.axis;
+    let axis; 
     switch(this.props.orient) {
         case 'bottom':
             axis = d3.axisBottom(this.props.scale);

@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ChartLegend = (props) => {
-    const labels = props.series.map((s,i) => {
+    const { series, inline } = props;
+    const labels = series.map((s,i) => {
         return (
-                <li key={i} className="legend-item" >
-                    <i className="fa fa-square" aria-hidden="true" style={{color:s.fillColor,marginRight:2}}></i>
-                    {s.label}
-                </li>
+            <li key={i} className="legend-item" >
+                <i className="fa fa-square" aria-hidden="true" style={{color:s.fillColor,marginRight:2}}></i>
+                {s.label}
+            </li>
         );
     });
     return (
-        <ul className={`chart-legend ${props.inline ? 'inline-legend' : ''}`}>
+        <ul className={`chart-legend ${inline ? 'inline-legend' : ''}`}>
             {labels}
         </ul>
     );
@@ -25,7 +26,7 @@ ChartLegend.propTypes = {
             fillColor: PropTypes.string
         })
     ).isRequired,
-    inline: PropTypes.bool
+    inline: PropTypes.bool 
 };
 
 ChartLegend.defaultProps = {

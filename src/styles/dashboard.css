@@ -12,6 +12,10 @@
     justify-content: space-evenly;
     padding: 0;
 }
-.counties:hover {
+.counties:hover,
+.counties.active {
     fill-opacity: 0.5;
+}
+#county-label {
+    position: absolute;
 }

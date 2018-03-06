@@ -3,28 +3,18 @@ import CountyMap from './county-map';
 import BarChart from './bar-chart';
 import DataTable from './../components/data-table';
 import Widget from './../components/widget';
+import { tableColumns, barChartSeries, xAxisField, countyColorBy } from './../constants/dataSettings';
 import './../styles/dashboard.css';
-// import fetchDataIfNeeded from 'src/actions/dashboard-actions';
 
 
 export default class Dashboard extends Component {
     constructor(props) {
         super(props);
-        this.chartWidth = 500;
-        this.columns = [
-            {path:'name',label:'Countermeasure'},
-            {path:'inventory',label:'Number in Stock'},
-            {path:'administered',label:'Dispensed Count'},
-            {path:'',label:'Action Needed'},
-        ];
-        this.series = [
-            {dataField:"administered",label:"Administered Count",fillColor:"#80cafe"},
-            {dataField:"inventory",label:"Inventory Count",fillColor:"#86d979"}
-        ];
         this.state = {
-            selectedCounty: props.selectedCounty
-        }
-        this.labelField = "name";
+            selectedCounty: props.selectedCounty,
+            chartWidth: 500
+        };
+        
         // Bind functions
         this.handleCountyClick = this.handleCountyClick.bind(this);
         this.handleDeselectCounty = this.handleDeselectCounty.bind(this);
@@ -44,7 +34,7 @@ export default class Dashboard extends Component {
         div.innerHTML = data[1];
     }
     
-    handleDeselectCounty(event) {
+    handleDeselectCounty() {
     	this.setState({selectedCounty: null});
     	let div = document.getElementById('county-label');
         div.style.left = "-150px";
@@ -56,11 +46,10 @@ export default class Dashboard extends Component {
     	let mapDiv = document.getElementById('county-map').getElementsByClassName("widget-content")[0];
     	let style = mapDiv.currentStyle || window.getComputedStyle(mapDiv);
     	let availableWidth = mapDiv.offsetWidth - style.paddingLeft.replace(/[^0-9]/g,'') - style.paddingRight.replace(/[^0-9]/g,'');
-    	this.chartWidth = availableWidth;
+    	this.setState({chartWidth: availableWidth});
     }
     
     componentDidMount() {
-    	// this.props.dispatch(fetchDataIfNeeded('GA',12));
     	this.updateDimensions();
     	window.addEventListener("resize", this.updateDimensions);
     }
@@ -70,12 +59,12 @@ export default class Dashboard extends Component {
     }
     
     render() {
-    	const dataset = this.state.selectedCounty ? this.props.data[this.state.selectedCounty].countermeasures : [];
-        const countyName = this.state.selectedCounty ? this.props.data[this.state.selectedCounty].county_name + " Co" : '';
+    	const dataset = this.state.selectedCounty ? this.props.data[this.state.selectedCounty].data : [];
+        const countyName = this.state.selectedCounty ? this.props.data[this.state.selectedCounty].countyName : '';
         const countyMap = this.props.usState ? 
     			<CountyMap 
 	            	stateAbbr={this.props.usState} 
-	        		colorBy="administered"
+	        		colorBy={countyColorBy}
 	            	width={this.chartWidth} 
 	            	countyData={this.props.data} 
 	            	activeCounty={this.state.selectedCounty} 
@@ -86,6 +75,9 @@ export default class Dashboard extends Component {
         			null;
     	return (
             <div className="dashboard">
+                <p className="App-intro">
+                    Select county from map to view data.
+                </p>
                 <div className="row">
                     <div className="col-sm-12 col-md-6" style={{marginBottom:'1.5rem'}}>
                         <Widget title={this.props.usState} elementId="county-map">
@@ -95,10 +87,10 @@ export default class Dashboard extends Component {
                     <div className="col-sm-12 col-md-6" style={{marginBottom:'1.5rem'}}>
                         <Widget title={countyName} elementId="countermeasure-chart">
                             <BarChart 
-                                series={this.series} 
+                                series={barChartSeries} 
                                 dataset={dataset} 
-                                labelField={this.labelField}
-                                barLabels={false}  
+                                xAxisField={xAxisField}
+                                showBarLabels={false}  
                                 width={this.chartWidth} 
                                 showBorder={false} 
                             />
@@ -108,7 +100,7 @@ export default class Dashboard extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <Widget title={countyName} elementId="countermeasure-table">
-                            <DataTable columns={this.columns} rows={dataset} pagination={false} displayRowTotal={false} />
+                            <DataTable columns={tableColumns} rows={dataset} pagination={false} displayRowTotal={false} />
                         </Widget>
                     </div>
                 </div>

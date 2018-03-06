@@ -11,17 +11,22 @@ const d3 = require('d3');
 export default class CountyMap extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            stateAbbr: props.stateAbbr,
-            stateCode: stateCodes[props.stateAbbr].state_code,
-            stateName: stateCodes[props.stateAbbr].state_name,
-            countyData: props.data,
-            activeCounty: null,
-        }
+        // this.state = {
+        //     stateAbbr: props.stateAbbr,
+        //     stateCode: stateCodes[props.stateAbbr].state_code,
+        //     stateName: stateCodes[props.stateAbbr].state_name,
+        //     countyData: props.data,
+        //     activeCounty: null,
+        // }
         this.path = d3.geoPath();
-        this.colorScale = this.colorScaleGenerator([0,10,20,30,40,50,60,70,80,90,100],
-            ['#ff4500','#f85b03','#f16e07','#e97c0c','#e18b12','#d89717','#cea21d','#c3ae22','#b7b927','#aac22c','#9acd32']);
+        this.colorScale = this.colorScaleGenerator([5000,105000,205000,305000,405000,505000,605000,705000,805000],
+            ["#fff7ec","#fee8c8","#fdd49e","#fdbb84","#fc8d59","#ef6548","#d7301f","#b30000","#7f0000"]);
         this.filterCounties = this.filterCounties.bind(this);
+        this.getStateCode = this.getStateCode.bind(this);
+    }
+
+    getStateCode() {
+        return stateCodes[this.props.stateAbbr].state_code;
     }
 
     xScaleGenerator(domainValues,rangeValues) {
@@ -62,9 +67,9 @@ export default class CountyMap extends Component {
         let legendHeight = width * 0.08; //40;
         let mapHeight = height - bottomPadding - legendHeight;
         let data = this.props.countyData ? this.props.countyData : {};
-        this.xScale = this.xScaleGenerator([0, 100],[0, Math.round(width / 2)]);
+        this.xScale = this.xScaleGenerator([5000, 805000],[0, Math.round(width / 2)]);
         
-        let state = topojson.feature(usGeoData,this.filterCounties(usGeoData.objects.counties,this.state.stateCode));
+        let state = topojson.feature(usGeoData,this.filterCounties(usGeoData.objects.counties,this.getStateCode()));
         let b = this.path.bounds(state); // Get bounding coordinates of state
         let scale = 0.95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / (mapHeight));  // Calculate scale to fit in given width x height
         let stateHeight = (b[1][1] - b[0][1]) * scale;  // Calculate final height of state
@@ -73,12 +78,13 @@ export default class CountyMap extends Component {
         
 
         let counties = state.features.map((d,i) => {
-            let name = data[d.id] ? data[d.id].county_name : "";
-            let adm = data[d.id] ? Math.round(this.calcAvgCMField(data[d.id],this.props.colorBy)) : null;
-            let color = adm ? this.colorScale(adm) : this.props.fillColor;
+            let name = data[d.id] ? data[d.id].countyName : "";
+            let colorData = this.props.colorBy ? data[d.id][this.props.colorBy] : null;
+            // let adm = data[d.id] ? Math.round(this.calcAvgCMField(data[d.id],this.props.colorBy)) : null;
+            let color = colorData ? this.colorScale(colorData) : this.props.fillColor;
             return (
                 <path id={d.id+"-"+name} d={this.path(d)} fill={color} className={`counties ${this.props.activeCounty===d.id ? "active" : ""}`} key={i} onClick={this.props.onClick} >
-                    <title>{name} {adm}%</title>
+                    <title>{name} {colorData}</title>
                 </path>
             );
         });
@@ -87,7 +93,7 @@ export default class CountyMap extends Component {
                 xScale={this.xScale} 
                 colorScale={this.colorScale} 
                 translate={`translate(10,${stateHeight+bottomPadding})`} 
-                title="Administered" 
+                title="Population" 
             /> 
             :
             null;
@@ -131,5 +137,5 @@ CountyMap.defaultProps = {
     onClick: null,
     onDeselect: null,
     activeCounty: null,
-    colorBy: "administered"
+    colorBy: ""
 };
