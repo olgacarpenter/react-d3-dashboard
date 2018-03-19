@@ -202,37 +202,5 @@
    "WY": {
       "state_code": "56",
       "state_name": "Wyoming"
-   },
-   "AS": {
-      "state_code": "60",
-      "state_name": "American Samoa"
-   },
-   "FM": {
-      "state_code": "64",
-      "state_name": "Federated States Of Micronesia"
-   },
-   "GU": {
-      "state_code": "66",
-      "state_name": "Guam"
-   },
-   "MH": {
-      "state_code": "68",
-      "state_name": "Marshall Islands"
-   },
-   "MP": {
-      "state_code": "69",
-      "state_name": "Northern Mariana Islands"
-   },
-   "PW": {
-      "state_code": "70",
-      "state_name": "Palau"
-   },
-   "PR": {
-      "state_code": "72",
-      "state_name": "Puerto Rico"
-   },
-   "VI": {
-      "state_code": "78",
-      "state_name": "Virgin Islands"
    }
 }

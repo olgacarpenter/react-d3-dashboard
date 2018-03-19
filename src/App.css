@@ -27,6 +27,7 @@
 }
 .App-intro .form-control {
   width: auto;
+  max-width: 100%;
   padding: 0;
   font-size: inherit;
   display: inline-block;

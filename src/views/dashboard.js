@@ -58,7 +58,7 @@ export default class Dashboard extends Component {
     	let mapDiv = document.getElementById('county-map').getElementsByClassName("widget-content")[0];
     	let style = mapDiv.currentStyle || window.getComputedStyle(mapDiv);
     	let availableWidth = mapDiv.offsetWidth - style.paddingLeft.replace(/[^0-9]/g,'') - style.paddingRight.replace(/[^0-9]/g,'');
-    	this.setState({chartWidth: availableWidth});
+        this.setState({chartWidth: availableWidth});
     }
     
     componentDidMount() {
@@ -81,7 +81,7 @@ export default class Dashboard extends Component {
     			<CountyMap 
 	            	stateAbbr={this.state.currentState} 
 	        		colorBy={countyColorBy}
-	            	width={this.chartWidth} 
+	            	width={this.state.chartWidth} 
 	            	countyData={data} 
 	            	activeCounty={this.state.selectedCounty} 
 	            	onClick={this.handleCountyClick} 
@@ -97,7 +97,7 @@ export default class Dashboard extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-12 col-md-6" style={{marginBottom:'1.5rem'}}>
-                        <Widget title={this.props.usState} elementId="county-map">
+                        <Widget title={this.state.currentState} elementId="county-map">
                             {countyMap}
                         </Widget>
                     </div>
@@ -108,7 +108,7 @@ export default class Dashboard extends Component {
                                 dataset={dataset} 
                                 xAxisField={xAxisField}
                                 showBarLabels={false}  
-                                width={this.chartWidth} 
+                                width={this.state.chartWidth} 
                                 showBorder={false} 
                             />
                         </Widget>
